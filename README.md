@@ -86,6 +86,23 @@ streamlit run app.py
 - **Conversation history**: all queries saved to SQLite and shown in the UI
 - **Token usage tracking**: input and output tokens displayed per query
 
+## Evaluation results
+
+Evaluated on 180 questions auto-generated from 60 random chunks using Groq:
+
+| Search mode | Hit Rate | MRR |
+|-------------|----------|-----|
+| Keyword (TF-IDF) | 0.6111 | 0.3763 |
+| Vector (ONNX) | 0.4722 | 0.3377 |
+| **Hybrid RRF** | **0.6333** | **0.4483** |
+
+Hybrid search wins on both metrics — combining keyword precision with semantic recall via Reciprocal Rank Fusion.
+
+To reproduce:
+```bash
+python src/evaluation.py
+```
+
 ## Sample queries
 
 - `¿Cuál fue la utilidad neta de Bancolombia en 2024?`
